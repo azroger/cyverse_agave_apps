@@ -1,0 +1,614 @@
+{
+    "name": "rb-GSNAP",
+    "parallelism": "SERIAL",
+    "version": "07.23.15",
+    "helpURI": "https://github.com/julian-gehring/GMAP-GSNAP",
+    "label": "GSNAP",
+    "shortDescription": "Spliced alignment tool",
+    "longDescription": "GSNAP, a multithreaded, gapped mapper for ESTs",
+    "author": "Roger Barthelson",
+    "datePublished": "08/19/15",
+    "tags": [
+        "aligner",
+        "NGS",
+        "EST",
+        "SAM"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+  	"executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+  	"defaultQueue": "normal",
+  	"defaultNodeCount": 1,
+  	"defaultMemoryPerNode": 32,
+  	"defaultProcessorsPerNode": 16,
+ 	"defaultMaxRunTime": "47:56:00",
+    "deploymentPath": "rogerab/applications/GMAP_agave/bin/",
+    "templatePath": "gsnap_wrapper3.sh",
+    "testPath": "../test/gsnap_wrapper2.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load irods"
+    ],
+    "inputs": [
+        {
+            "id": "seqFolder",
+            "label": "Input the sequence files in a directory",
+        	"description": "sequence files in fastq or fasta format",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "order": 1,
+                "required": true
+            },
+            "details": {
+                "label": "sequence folder:",
+                "description": "Folder of sequence files in fastq or fasta"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "directory"
+                ]
+            }
+        },
+              {
+            "id": "reference",
+            "label": "Input the reference sequence file",
+        	"description": "reference (genome) sequence file in fasta format",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "order": 2,
+                "required": false
+            },
+            "details": {
+                "label": "reference",
+                "description": "Sequence file in fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 0,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reference_data",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "order": 3,
+                "required": false
+            },
+            "details": {
+                "label": "reference indexes",
+                "description": "Index files previously created"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 0,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "anno_path",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "order": 4,
+                "required": false
+            },
+            "details": {
+                "label": "To use known splicing, input an annotation file in gtf format",
+                "description": "splicing annotation file (splicesites or introns)"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 0,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+            	{
+            "id": "snpsMap",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "order": 5,
+                "visible": true
+            },
+            "details": {
+                "label": "For tolerance to SNPs, input a SNPs file in vcf format",
+                "description": "Provides tolerance to known SNPs"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+            {
+            "id": "indx",
+            "value": {
+                "default": "index",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 1,
+                "visible": true
+            },
+            "details": {
+                "label": "index name",
+                "description": "give a name to the genome index if you want to reuse it"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+          {
+            "id": "seqmode",
+            "value": {
+        		"type": "enumeration",
+        		"default": "unpaired",
+                "enum_values": [
+                    { "unpaired": "unpaired" },
+                    { "paired": "paired" }
+                ],
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "paired or unpaired",
+                "description": "Is this paired or unpaired mapping?"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "orientation",
+            "value": {
+        		"type": "enumeration",
+        		"default": "FR",
+                "enum_values": [
+                    { "FR": "forward-reverse" },
+                    { "RF": "reverse-forward" },
+                    { "FF": "forward-forward" }
+                ],
+                "required": false,
+                "order": 3,
+                "visible": true
+            },
+            "details": {
+                "label": "read pair orientation",
+                "description": "For paired reads, how are they oriented?"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                  {
+            "id": "cmetMap",
+            "value": {
+        		"type": "enumeration",
+        		"default": "",
+                "enum_values": [
+                    { "": "C-methylation mapping off" },
+                    { "yes": "Turn on C-methylation sensitive mapping" }
+                ],
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "C-methylation sensitive mapping",
+                "description": "Turn on C-methylation sensitive mapping?"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                  {
+            "id": "atoiMap",
+            "value": {
+        		"type": "enumeration",
+        		"default": "",
+                "enum_values": [
+                    { "": "A-to-I sensitive mapping off" },
+                    { "yes": "Turn on Adenosine to Inosine conversion-sensitive mapping" }
+                ],
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "Adenosine to Inosine conversion-sensitive mapping",
+                "description": "A to I conversion-sensitive mapping"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "splicemode",
+            "value": {
+        		"type": "enumeration",
+        		"default": "splicesites",
+                "enum_values": [
+                    { "splicesites": "use splicesites (default setting when annotation file provided)" },
+                    { "introns": "use introns (annotation file required)" }
+                ],
+                "required": false,
+                "order": 6,
+                "visible": true
+            },
+            "details": {
+                "label": "use splicesites or introns to map with known splicing",
+                "description": "For using known splicing, analyse by splicesites or by introns?"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+          {
+            "id": "stranded",
+            "value": {
+        		"type": "enumeration",
+        		"default": "NOT",
+                "enum_values": [
+                    { "NOT": "Not-Stranded mapping (default setting)" },
+                    { "STRANDED": "Stranded (for cmet or atoi sensitive mapping)" }
+                ],
+                "required": false,
+                "order": 13,
+                "visible": true
+            },
+            "details": {
+                "label": "strand-dependent mapping",
+                "description": "Map to either strand or use strand-dependent-mapping?"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+            {
+            "id": "gunZip",
+            "value": {
+                "default": "",
+        		"type": "enumeration",
+        		"default": "",
+                "enum_values": [
+                    { "": "Reads are not gzipped" },
+                    { "YES": "Unzip gzipped reads" }
+                ],
+                "required": false,
+                "order": 8,
+                "visible": true
+            },
+            "details": {
+                "label": "Unzip reads",
+                "description": "Uncompress gzipped read files"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "maxMismatch",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 9,
+                "visible": true
+            },
+            "details": {
+                "label": "maximum mismatch",
+                "description": "Set a maximum allowed mismatch (default is calculated by formula)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "adapterStrip",
+            "value": {
+                "default": "",
+        		"type": "enumeration",
+        		"default": "",
+                "enum_values": [
+                    { "": "adapter trimming off" },
+                    { "paired": "turn on adapter trimming for paired reads" }
+                ],
+                "required": false,
+                "order": 10,
+                "visible": true
+            },
+            "details": {
+                "label": "Trim adapter sequence",
+                "description": "Automatically trim adapter sequences from paired reads"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "indelPenalty",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 11,
+                "visible": true
+            },
+            "details": {
+                "label": "Indel penalty",
+                "description": "Set a penalty for indels, default is 2"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+           {
+            "id": "gmapTrigger",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 12,
+                "visible": true
+            },
+            "details": {
+                "label": "Gmap trigger",
+                "description": "Set a minimum score to trigger GMAP pair mapping"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "novelSplicing",
+            "value": {
+        		"type": "enumeration",
+        		"default": "1",
+                "enum_values": [
+                    { "1": "Look for novel splicing" },
+                    { "0": "No novel splicing, known splicing only" }
+                ],
+                "required": false,
+                "order": 7,
+                "visible": true
+            },
+            "details": {
+                "label": "novel splicing on/off",
+                "description": "Look for novel splicing (compatible with known splicing)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+            {
+            "id": "quality",
+            "value": {
+                "default": "sanger",
+        		"type": "enumeration",
+                "enum_values": [
+                    { "sanger": "sanger (ASCII 33-126)" },
+                    { "illumina": "illumina (ASCII 64-126)" }
+                ],
+                "required": false,
+                "order": 14,
+                "visible": true
+            },
+            "details": {
+                "label": "quality format",
+                "description": "Select the appropriate quality format"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+            {
+            "id": "nPaths",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 15,
+                "visible": true
+            },
+            "details": {
+                "label": "Maximum number of paths to print",
+                "description": "Set the maximum number of matches per read"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "nonExcess",
+            "value": {
+                "default": "",
+        		"type": "enumeration",
+                "enum_values": [
+                    { "": "Print all results" },
+                    { "QuietExcessive": "Don't print results for reads that exceed the path limit" }
+                ],
+                "required": false,
+                "order": 16,
+                "visible": true
+            },
+            "details": {
+                "label": "Skip reads with excessive hits",
+                "description": "Don't print results for reads with excessive number of hits"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readGroupID",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 17,
+                "visible": true
+            },
+            "details": {
+                "label": "read group ID",
+                "description": "Set a read group ID for the SAM file"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readGroupName",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 18,
+                "visible": true
+            },
+            "details": {
+                "label": "read group name",
+                "description": "Set a read group name for the SAM file"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readGroupLibrary",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 19,
+                "visible": true
+            },
+            "details": {
+                "label": "read group library",
+                "description": "Set a read group library name for the SAM file"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readGroupPlatform",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 20,
+                "visible": true
+            },
+            "details": {
+                "label": "read group platform",
+                "description": "Set a read group platform for the SAM file"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+  ],
+	"Outputs": [
+	        {
+            "id": "GSNAP_Output",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "gsnap_output",
+                "validator": "",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
