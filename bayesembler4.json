@@ -1,0 +1,47 @@
+{
+	"name": "rb-Bayesembler",
+	"parallelism": "SERIAL",
+	"version": "1.2.0",
+	"revision": 2,
+	"helpURI": "http://bioinformatics-centre.github.io/bayesembler/",
+	"label": "Bayesembler",
+	"shortDescription": "bayesian transcriptome assembler",
+	"longDescription": "transcript assembler for ref-based assembly.",
+	"author": "Roger Barthelson",
+	"datePublished": "06/01/16",
+	"tags": [
+		"assembler",
+		"NGS",
+		"Illumina",
+		"Bayesian",
+		"transcript"
+	],
+	"ontology": [
+		"http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+	],
+	"defaultMaxRunTime": "47:56:00",
+	"defaultQueue": "normal",
+	"defaultNodeCount": 1,
+	"defaultMemoryPerNode": 64,
+	"defaultProcessorsPerNode": 24,
+	"executionHost": "rogerab-starland",
+	"executionSystem": "rogerab-starland",
+	"executionType": "HPC",
+	"deploymentPath": "rogerab/applications/bayesembler-1.2/bin",
+	"templatePath": "bayes_wrapper3.sh",
+	"testPath": "../test/bayes_wrapper2.sh",
+	"checkpointable": true,
+	"modules": [
+		"purge",
+		"load TACC",
+		"load samtools/1.3"
+	],
+	"inputs": [{
+		"id": "prBam1",
+		"value": {
+			"default": "",
+			"validator": "",
+			"visible": true,
+			"required": false,
+			"order": 1
+		},
