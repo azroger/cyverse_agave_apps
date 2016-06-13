@@ -1,0 +1,230 @@
+{
+    "name": "rb-BWA-mem",
+    "parallelism": "SERIAL",
+    "version": "0.7.12",
+    "revision": 1,
+    "helpURI": "http://bioinformatics-centre.github.io/bayesembler/",
+    "label": "BWA-mem",
+    "shortDescription": "BWA-mem mapper",
+    "longDescription": "Maps reads including longer reads to a reference sequence.",
+    "author": "Roger Barthelson",
+    "datePublished": "10/18/15",
+    "tags": [
+        "aligner",
+        "NGS",
+        "Illumina"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "35:56:00",
+    "defaultQueue": "normal",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 32,
+    "defaultProcessorsPerNode": 16,
+    "executionHost": "rogerab-stampedesville",
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/bwa-mem/bin",
+    "templatePath": "bwa_wrapper.sh",
+    "testPath": "../test/bwa_wrapper_test.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load irods",
+        "load bwa/0.7.12",
+	"load samtools/1.2"
+    ],
+    "inputs": [
+        {
+            "id": "seqFolder",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 1
+            },
+            "details": {
+                "label": "Directory of NGS files",
+                "description": "Reads input directory"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "directory"
+                ]
+            }
+        },
+              {
+            "id": "reference",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 2
+            },
+            "details": {
+                "label": "reference fasta",
+                "description": "reference genome file."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reference_data",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 3
+            },
+            "details": {
+                "label": "indexed reference",
+                "description": "pre-indexed reference sequence -- tarred and zipped."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+                ],
+    "parameters": [
+                    {
+            "id": "seqmode",
+            "value": {
+                "default": "paired",
+                "type": "enumeration",
+                "enum_values": [
+                    { "paired": "paired"},
+                    { "unpaired": "unpaired"}
+                ],
+                "required": true,
+                "visible": true,
+                "order": 1
+            },
+            "details": {
+                "label": "paired vs unpaired reads",
+                "description": "Sequencing mode, paired vs unpaired",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "min_score",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string"
+            },
+            "details": {
+                "label": "minimum score",
+                "description": "Minimum score to output",
+                "visible": true,
+                "order": 2
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },        
+                    {
+            "id": "read_type",
+            "value": {
+                "default": "",
+                "type": "enumeration",
+                "enum_values": [
+                    { "": "Illumina, default"},
+                    { "pacbio": "PacBio"},
+                    { "ont2d": "Oxford Nanopore"},
+                    { "intractg": "Intra-species contigs to ref"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "read type",
+                "description": "type of sequencing reads",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "sort_type",
+            "value": {
+                "default": "",
+                "type": "enumeration",
+                "enum_values": [
+                    { "": "by coordinates"},
+                    { "-n": "by name"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "Sorting method for the BAM file",
+                "description": "coordinate sorting or name sorting",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "bwa_output",
+            "details": {
+                "label": "Output Directory",
+                "description": "The output directory."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "BWA_output",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
