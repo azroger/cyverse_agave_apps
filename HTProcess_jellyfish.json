@@ -4,7 +4,7 @@
   "helpURI": "https://pods.iplantcollaborative.org/wiki/display/DEapps/HTProcess_Jellyfish-2.0.0",
   "label": "HTprocess_jellyfish",
   "defaultQueue": "normal",
-  "defaultNodeCount": 1,
+  "defaultNodeCount": 3,
   "defaultMemoryPerNode": 32,
   "defaultProcessorsPerNode": 16,
   "defaultRequestedTime": "24:00:00",
