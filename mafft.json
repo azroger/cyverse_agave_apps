@@ -1,0 +1,85 @@
+{
+    "name": "rb-Mafft",
+    "parallelism": "SERIAL",
+    "version": "7.0.17",
+    "helpURI": "http://mafft.cbrc.jp/alignment/software/manual/manual.html",
+    "label": "Mafft",
+    "shortDescription": "Mafft, multi-sequence aligner",
+    "longDescription": "A very, very basic version of Mafft",
+    "author": "Roger Barthelson",
+    "datePublished": "09/24/15",
+    "tags": [
+        "aligner",
+        "NGS",
+        "multi-sequence",
+        "rPlant"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "23:56:00",
+    "defaultQueue": "normal",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 32,
+    "defaultProcessorsPerNode": 16,
+    "executionHost": "rogerab-stampedesville",
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/mafft/bin",
+    "templatePath": "mafft_wrapper.sh",
+    "testPath": "../test/mafftrun.sh",
+    "checkpointable": false,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load mafft/7.017"
+    ],
+    "inputs": [
+        {
+            "id": "input_seq",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": true,
+                "order": 1
+            },
+            "details": {
+                "label": "Input sequences",
+                "description": "fasta format sequence file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "mafft_out.fa",
+            "details": {
+                "label": "Mafft output file",
+                "description": "The output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "mafft_out.fa",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
