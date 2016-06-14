@@ -1,0 +1,436 @@
+{
+    "name": "rb-Oases",
+    "parallelism": "SERIAL",
+    "version": "0.2.08",
+    "revison": 3,
+    "helpURI": "http://www.ebi.ac.uk/~zerbino/velvet/",
+    "label": "Oases",
+    "shortDescription": "Oases, the transcript assembler",
+    "longDescription": "Transcript assembler for short reads, works with Velvet.",
+    "author": "Roger Barthelson",
+    "datePublished": "02/13/15",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+         "454",
+        "EBI"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/oases-0.2.08/bin/",
+    "templatePath": "oases_wrapperA.sh",
+    "testPath": "../test/oases_wrapper_test.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load irods",
+        "load oases"
+    ],
+    "inputs": [
+        {
+            "id": "velvet_dir",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "order": 1,
+                "required": true
+            },
+            "details": {
+                "label": "Select the VelvetG_Out.tar.gz file from VelvetG",
+                "description": "Input directory"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+	],
+    "parameters": [
+            {
+            "id": "min_trans_lgth",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 1,
+                "visible": true
+            },
+            "details": {
+                "label": "Set the minimum transcript length for output",
+                "description": "Set the min lngth of transcript, default=hash length",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+             {
+            "id": "min_pair_cnt",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 2,
+                "visible": true
+            },
+            "details": {
+                "label": "Enter the number of paired end connections for scaffolding two contigs (default 4)",
+                "description": "Enter an integer to set the required # of connections",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ctff",
+            "value": {
+                "default": "auto",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 3,
+                "visible": true
+            },
+            "details": {
+                "label": "Enter a coverage cutoff value, a number or auto",
+                "description": "Enter a number to set the coverage cutoff value",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 4,
+                "visible": true
+            },
+            "details": {
+                "label": "Provide here the insert size for short paired reads (integer)",
+                "description": "insert size or paired-end spacing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length_sd",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 5,
+                "visible": true
+            },
+            "details": {
+                "label": "Estimate the SD for insert size for short paired reads",
+                "description": "Estimated std deviation in the insert size (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 6,
+                "visible": true
+            },
+            "details": {
+                "label": "Provide here the insert size for short paired reads 2",
+                "description": "insert size or paired-end spacing (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length2_sd",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 7,
+                "visible": true
+            },
+            "details": {
+                "label": "Estimate the SD for insert size for short paired reads 2",
+                "description": "Estimated std deviation in the insert size (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+                    {
+            "id": "ins_length_long",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 8,
+                "visible": true
+            },
+            "details": {
+                "label": "Provide here the insert size for long paired reads",
+                "description": "Insert size for long paired reads (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length_long_sd",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 9,
+                "visible": true
+            },
+            "details": {
+                "label": "Estimate the SD for insert size for long paired reads",
+                "description": "Estimated std deviation in the insert size",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },  
+                    {
+            "id": "scaffolding",
+            "value": {
+          	"default": "yes",
+        	"type": "enumeration",
+                "enum_values": [
+                    { "": "no" },
+                    { "yes": "yes" }
+                ],
+        		"required": false,
+                "order": 10,
+                "visible": true
+            },
+            "details": {
+                "label": "Turn on scaffolding, yes or no.",
+                "description": "Enter no to turn off scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "paired_ctff",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 11,
+                "visible": true
+            },
+            "details": {
+                "label": "Enter the min ratio allowed between obs and est connecting pairs",
+                "description": "Enter a new cutoff value (0-1, default 0.1)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "mrge",
+            "value": {
+        	"default": "",
+        	"type": "enumeration",
+                "enum_values": [
+                    { "": "no" },
+                    { "yes": "yes" }
+                ],
+                "required": false,
+                "order": 12,
+                "visible": true
+            },
+            "details": {
+                "label": "Enter yes to turn on merging",
+                "description": "Preserve contigs mapping onto long seq's from cov cutoff",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "unused_reads",
+            "value": {
+                "default": "",
+        		"type": "enumeration",
+                "enum_values": [
+                    { "": "no" },
+                    { "1": "yes" }
+                ],
+        		"required": false,
+                "order": 13,
+                "visible": true
+            },
+            "details": {
+                "label": "Export unused reads into file, yes or no (default: no)",
+                "description": "Enter yes to export unused reads",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+                    {
+            "id": "alignments",
+            "value": {
+                "default": "",
+        		"type": "enumeration",
+                "enum_values": [
+                    { "": "no" },
+                    { "1": "yes" }
+                ],
+        		"required": false,
+                "order": 14,
+                "visible": true
+            },
+            "details": {
+                "label": "Export a summary of contig alignments to the ref (default: no)",
+                "description": "Enter yes to export a summary of contig alignments",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "edgeFracCtff",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 15,
+                "visible": true
+            },
+            "details": {
+                "label": "Remove edges with less than n fraction of a node's outgoing flow",
+                "description": "Enter a new cutoff value (0-1, default 0.1)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "degree_ctff",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "order": 16,
+                "visible": true
+            },
+            "details": {
+                "label": "Set the max degree (integer value) on either end of a contig to be 'unique'",
+                "description": "Enter a new integer to change the degree (default: 3)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "Oases_Output",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "transcripts.fa",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
