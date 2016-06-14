@@ -1,0 +1,127 @@
+{
+  "name": "rb-Ray",
+  "version": "2.3.1",
+  "helpURI": "http://www.ebi.ac.uk/~zerbino/velvet/",
+  "label": "Ray",
+  "defaultQueue": "largemem",
+  "defaultNodeCount": 1,
+  "defaultMemoryPerNode": 999,
+  "defaultProcessorsPerNode": 32,
+  "defaultMaxRunTime": "47:56:00",
+  "defaultRequestedTime": "48:00:00",
+  "shortDescription": "Ray, parallel assembler 2.3",
+  "longDescription": "Genome assembler for short sequencing reads.",
+  "executionSystem": "rogerab-stampedesville",
+  "executionType": "HPC",
+  "parallelism": "PARALLEL",
+  "deploymentPath": "rogerab/applications/Ray2.3/bin",
+  "templatePath": "ray_wrapperv2.sh",
+  "testPath": "../test/ray_testwrapper.sh",
+  "checkpointable": false,
+  "tags": [
+    "assembler",
+    "NGS",
+    "Illumina",
+    "454",
+    "de novo"
+  ],
+  "modules": [
+    "purge",
+    "load TACC",
+    "load irods",
+    "load intel",
+    "load mvapich2"
+  ],
+  "inputs": [
+    {
+      "id": "seqFolder",
+      "details": {
+        "label": "Input a folder of sequences to assemble:",
+        "description": "Folder of sequence files in fastq, fasta, or sam format",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/sequence/FASTA"
+        ],
+        "fileTypes": [
+          "fasta-0"
+        ]
+      },
+      "value": {
+        "default": "",
+        "required": true,
+        "visible": true
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "id": "interleaved",
+      "details": {
+        "label": "interleaved pairs",
+        "description": "Are your paired files in interleaved format?",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        		"type": "enumeration",
+                "default": "",
+                "enum_values": [
+                    { "": "files are not interleaved pairs" },
+                    { "yes": "paired files are in interleaved format" }
+                ],
+                "visible": true,
+        "order": 1
+      }
+    },
+    {
+      "id": "kmer",
+      "details": {
+        "label": "select the kmer size",
+        "description": "set the Kmer value for assembly (odd integer)",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:integer"
+        ]
+      },
+      "value": {
+        "default": 31,
+        "type": "number",
+        "validator": "[0-9]+",
+        "required": true,
+        "visible": true,
+        "order": 2
+      }
+    }
+  ],
+     "outputs": [
+        {
+            "id": "Output",
+            "details": {
+                "label": "RayOutput",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "RayOutput",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
