@@ -1,0 +1,154 @@
+{
+  "name": "rb-HTProcess_Jellyfish",
+  "version": "2.0.0",
+  "helpURI": "https://pods.iplantcollaborative.org/wiki/display/DEapps/HTProcess_Jellyfish-2.0.0",
+  "label": "HTprocess_jellyfish",
+  "defaultQueue": "normal",
+  "defaultNodeCount": 1,
+  "defaultMemoryPerNode": 32,
+  "defaultProcessorsPerNode": 16,
+  "defaultRequestedTime": "24:00:00",
+  "defaultMaxRunTime": "23:56:00",
+  "shortDescription": "Jellyfish, kmer counter",
+  "longDescription": "Jellyfish, to determine kmer coverage for sequence files",
+	"executionSystem": "rogerab-stampedesville",
+  "executionType": "HPC",
+  "parallelism": "SERIAL",
+  "deploymentPath": "/rogerab/applications/jellyfish2/bin",
+  "deploymentSystem": "data.iplantcollaborative.org",
+  "templatePath": "HTprocess_jellyfish.sh",
+  "testPath": "../test/jellyfish_wrapper2.sh",
+  "tags": [
+    "kmer counter",
+    "kmer",
+    "kmer coverage",
+    "assembly"
+  ],
+  "ontology": [
+    "genome assembly",
+    "genomics",
+    "sequencing"
+  ],
+  "modules": [
+    "purge",
+    "load TACC",
+    "load R"
+  ],
+  "inputs": [
+    {
+      "id": "Input_Dir",
+      "details": {
+        "label": "Input the HTProcess_Reads here",
+        "description": "HTProcess_Reads directory, the output from HTProcess-prepare_directories_and_run_fastqc",
+        "attribute": "--Input_Dir=",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/sequence/FASTA"
+        ],
+        "fileTypes": [
+          "directory"
+        ]
+      },
+      "value": {
+        "default": "",
+        "required": true,
+        "visible": true,
+        "order": 0
+      }
+    }
+  ],
+    "outputs": [
+    {
+      "id": "jellyfish_summary.html",
+      "details": {
+        "label": "jellyfish output summary",
+        "description": "output as self-contained html page",
+        "attribute": "--output_page=",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/"
+          ]
+      },
+      "value": {
+        "default": "jellyfish_summary.html",
+        "required": false,
+        "visible": false,
+        "validator": null,
+        "order": 0
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "id": "kmer1",
+      "details": {
+        "label": "Set the first kmer setting",
+        "description": "kmer setting for kmer counting",
+        "attribute": "--kmer1=",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string",
+          "integer"
+        ]
+      },
+      "value": {
+        "default": "21",
+        "type": "string",
+        "required": true,
+        "visible": true,
+        "order": 0
+      }
+    },
+    {
+      "id": "kmer2",
+      "details": {
+        "label": "Set the second kmer setting",
+        "description": "A second (optional) kmer setting",
+        "attribute": "--kmer2=",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        "type": "number",
+        "validator": "[0-9]+",
+        "visible": true,
+        "order": 1,
+        "required": false
+      }
+    },
+    {
+      "id": "kmer3",
+      "details": {
+        "label": "Set the third kmer setting",
+        "description": "third optional kmer setting for jellyfish",
+        "attribute": "--kmer3=",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        "type": "number",
+        "validator": "[0-9]+",
+        "visible": true,
+        "order": 2,
+        "required": false
+      }
+    }
+  ],
+  "checkpointable": false
+}
