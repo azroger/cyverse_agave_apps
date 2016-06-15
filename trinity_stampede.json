@@ -1,0 +1,355 @@
+{
+  "name": "RB-trinity-stmpde",
+  "version": "11.10.13",
+  "helpURI": "http://trinityrnaseq.sourceforge.net/",
+  "label": "Trinity-r2013-11-10",
+    "shortDescription": "Trinity, the transcript assembler",
+    "longDescription": "Transcript assembler for short reads",
+    "datePublished": "01/27/15",
+      "tags": [
+    "next-gen",
+    "NGS",
+    "transcriptome assembly",
+    "gene expression",
+    "assembler",
+    "rnaseq"
+  	], 
+      "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+        ], 
+    "author": "Roger Barthelson",
+    "defaultMaxRunTime": "47:56:00",
+    "defaultRequestedTime": "48:00:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+  "parallelism": "SERIAL",
+  "checkpointable": false,
+  "deploymentPath": "rogerab/applications/trinity-20130814/bin",
+  "templatePath": "trinity_wrapper-rb.sh",
+  "testPath": "../test/trinity_wrapper-matt.sh",
+  "modules": [
+    "purge",
+    "load TACC",
+    "load bowtie/1.0.0",
+    "load perl",
+    "load samtools",
+    "swap intel gcc",
+    "load trinityrnaseq/r20131110"
+  ],
+  "inputs": [
+    {
+      "id": "right",
+      "details": {
+        "label": "Right sequence library read file (pair with Left file)",
+        "description": "--right",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/mime/application/X-fasta",
+          "http://sswapmeet.sswap.info/mime/application/X-fastq"
+        ],
+        "fileTypes": [
+          "fastq-0",
+          "fasta-0"
+        ]
+      },
+      "value": {
+        "default": "",
+        "visible": true,
+        "required": false,
+        "order": 2
+      }
+    },
+    {
+      "id": "left",
+      "details": {
+        "label": "Left sequence library read file",
+        "description": "--left",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/mime/application/X-fasta",
+          "http://sswapmeet.sswap.info/mime/application/X-fastq"
+        ],
+        "fileTypes": [
+          "fastq-0",
+          "fasta-0"
+        ]
+      },
+      "value": {
+        "default": "",
+        "visible": true,
+        "required": false,
+        "order": 1
+      }
+    },
+    {
+      "id": "single",
+      "details": {
+        "label": "Single-end seq file. Do not supply if you have paired-data.",
+        "description": "--single",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/mime/application/X-fasta",
+          "http://sswapmeet.sswap.info/mime/application/X-fastq"
+        ],
+        "fileTypes": [
+          "fastq-0",
+          "fasta-0"
+        ]
+      },
+      "value": {
+        "default": "",
+        "visible": true,
+        "required": false,
+        "order": 3
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "id": "SS_lib_type",
+      "details": {
+        "label": "Optional strand-specific library type",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        "type": "enumeration",
+                "default": "FR",
+                "enum_values": [
+                    { "FR": "PE forward-reverse" },
+                    { "RF": "PE reverse-forward" },
+                    { "F": "SE forward" },
+                    { "R": "SE reverse" }
+                ],
+        "visible": true,
+        "required": false,
+        "order": 1
+      }
+    },
+    {
+      "id": "jacard_clip",
+      "details": {
+        "label": "Perform Jacard clipping (expensive)",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:boolean"
+        ]
+      },
+      "value": {
+        "default": "0",
+        "type": "enumeration",
+                "enum_values": [
+                    { "0": "false" },
+                    { "1": "true" }
+                ],
+        "visible": true,
+        "required": false,
+        "order": 6
+      }
+    },
+    {
+      "id": "max_reads_per_graph",
+      "details": {
+        "label": "Maximum number of reads to anchor within a single graph",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:integer"
+        ]
+      },
+      "value": {
+        "default": "20000000",
+        "type": "string",
+        "visible": true,
+        "required": false,
+        "order": 7
+      }
+    },
+    {
+      "id": "seqType",
+      "details": {
+        "label": "File type of reads: (fq or fa)",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        "type": "enumeration",
+        "default": "fq",
+                "enum_values": [
+                    { "fq": "fastq" },
+                    { "fa": "fasta" }
+                ],
+        "required": true,
+        "visible": true,
+        "order": 2
+      }
+    },
+    {
+      "id": "bfly_opts",
+      "details": {
+        "label": "Additional parameters to pass through to butterfly",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        "type": "string",
+        "visible": true,
+        "required": false,
+        "order": 10
+      }
+    },
+    {
+      "id": "group_pairs_distance",
+      "details": {
+        "label": "Maximum length expected between fragment pairs",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:integer"
+        ]
+      },
+      "value": {
+        "default": "500",
+        "type": "string",
+        "validator": "[0-9]+",
+        "visible": true,
+        "required": false,
+        "order": 3
+      }
+    },
+    {
+      "id": "no_triplet_lock",
+      "details": {
+        "label": "Do not lock triplet-supported nodes",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:boolean"
+        ]
+      },
+      "value": {
+        "default": "0",
+        "type": "enumeration",
+                "enum_values": [
+                    { "0": "false" },
+                    { "1": "true" }
+                ],
+        "visible": true,
+        "required": false,
+        "order": 8
+      }
+    },
+    {
+      "id": "min_kmer_cov",
+      "details": {
+        "label": "Min count for K-mers to be assembled",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:integer"
+        ]
+      },
+      "value": {
+        "default": "1",
+        "type": "string",
+        "validator": "[0-9]+",
+        "visible": true,
+        "required": false,
+        "order": 5
+      }
+    },
+    {
+      "id": "min_contig_length",
+      "details": {
+        "label": "Minimum assembled contig length to report",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:integer"
+        ]
+      },
+      "value": {
+        "default": "200",
+        "type": "string",
+        "validator": "[0-9]+",
+        "visible": true,
+        "required": false,
+        "order": 4
+      }
+    },
+    {
+      "id": "path_reinforcement_distance",
+      "details": {
+        "label": "Minimum overlap of reads with growing transcript path",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:integer"
+        ]
+      },
+      "value": {
+        "default": "75",
+        "type": "string",
+        "validator": "[0-9]+",
+        "visible": true,
+        "required": false,
+        "order": 9
+      }
+    }
+  ],
+    "outputs": [
+        {
+            "id": "TrinityOutput",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "trinity_out.tar.gz",
+                "required": false,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
