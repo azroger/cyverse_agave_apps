@@ -1,0 +1,144 @@
+{
+    "name": "gapcloser",
+    "parallelism": "SERIAL",
+    "version": "1.12.0",
+    "helpURI": "https://pods.iplantcollaborative.org/wiki/display/DEapps/gapcloser",
+    "label": "Gapcloser 1.12",
+    "shortDescription": "assembly gap reducer",
+    "longDescription": "Extra module with Soapdenovo2",
+    "author": "Roger Barthelson",
+    "datePublished": "01/15/15",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+        "BGI"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "deploymentPath": "rogerab/applications/soapdenovo-2.04/bin",
+    "templatePath": "gapcloser_wrapper.sh",
+    "testPath": "../test/gapcloser_testwrapper.sh",
+    "checkpointable": false,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load irods"
+    ],
+    "inputs": [
+        {
+            "id": "inputDirectory",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "Soapdenovo Output Directory",
+                "description": "Directory of sequence files"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+            {
+            "id": "max_rd_len",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "maximum read length",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "no_known_function",
+            "value": {
+                "default": "0",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string"
+            },
+            "details": {
+                "label": "A Dud",
+                "description": "Specify absolutely nothing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },        
+        	{
+            "id": "overlapParam",
+            "value": {
+                "default": "25",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "overlap param(<=31)",
+                "description": "required overlap",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+        "outputs": [
+        {
+            "id": "GapCloserOutput",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "SoapdenovoOut_gapcloser.fa",
+                "required": false,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
