@@ -1,0 +1,867 @@
+{
+    "name": "rb-SPAdes",
+    "parallelism": "SERIAL",
+    "version": "3.8.0",
+    "helpURI": "https://pods.iplantcollaborative.org/wiki/display/DEapps/soapdenovo",
+    "label": "SPAdes",
+    "shortDescription": "SPAdes, genome assembler",
+    "longDescription": "Accurate assembler for small genomes and single-cell samples",
+    "author": "Roger Barthelson",
+    "datePublished": "05/31/16",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+        "genome"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "normal",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 64,
+    "defaultProcessorsPerNode": 24,
+    "executionHost": "rogerab-starland",
+    "executionSystem": "rogerab-starland",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/spades-3.8.0/bin",
+    "templatePath": "spades_wrapper.sh",
+    "testPath": "../test/spades_test.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC"
+    ],
+    "inputs": [
+        {
+            "id": "reads1_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 1
+            },
+            "details": {
+                "label": "Library1, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads1_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 2
+            },
+            "details": {
+                "label": "Library1, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "single1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 3
+            },
+            "details": {
+                "label": "Paired or unpaired Library1, single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads2_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 4
+            },
+            "details": {
+                "label": "Library2, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads2_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 5
+            },
+            "details": {
+                "label": "Library2, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "single2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 6
+            },
+            "details": {
+                "label": "Paired or unpaired Library2, single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads3_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 7
+            },
+            "details": {
+                "label": "Library3, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads3_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 8
+            },
+            "details": {
+                "label": "Library3, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "single3",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 9
+            },
+            "details": {
+                "label": "Paired or unpaired Library3, single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads4_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 10
+            },
+            "details": {
+                "label": "Library4, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads4_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 11
+            },
+            "details": {
+                "label": "Library4, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "single4",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 12
+            },
+            "details": {
+                "label": "Paired or unpaired Library4, single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads5_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 13
+            },
+            "details": {
+                "label": "Library5, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads5_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 14
+            },
+            "details": {
+                "label": "Library5, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "single5",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 15
+            },
+            "details": {
+                "label": "Paired or unpaired Library5, single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "sanger_file",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 15
+            },
+            "details": {
+                "label": "Single Sanger reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "pacbio_file",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 15
+            },
+            "details": {
+                "label": "PacBio single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "nanopore_file",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 15
+            },
+            "details": {
+                "label": "Nanopore single reads",
+                "description": "Enter the single read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "read_type1",
+            "value": {
+                "default": "paired",
+                "type": "enumeration",
+                "enum_values": [
+                    { "single": "single reads"},
+                    { "paired": "paired reads"},
+                    { "paired-plus": "paired and single reads"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 1
+            },
+            "details": {
+                "label": "Library1 read content",
+                "description": "Paired, single, or both?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format1",
+            "value": {
+                "default": "pe",
+               "type": "enumeration",
+                "enum_values": [
+                    { "pe": "paired end"},
+                    { "mp": "mate pair"},
+                    { "hqmp": "high quality mate pair"},
+                    { "nxmate": "Lucigen NxMate"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "pairing format, library 1",
+                "description": "Pairing type (if the reads are paired)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "read_type2",
+            "value": {
+                 "default": "paired",
+                "type": "enumeration",
+                "enum_values": [
+                    { "single": "single reads"},
+                    { "paired": "paired reads"},
+                    { "paired-plus": "paired and single reads"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "Library2 read content",
+                "description": "Paired, single, or both?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format2",
+            "value": {
+            	"default": "pe",
+               	"type": "enumeration",
+                "enum_values": [
+                    { "pe": "paired end"},
+                    { "mp": "mate pair"},
+                    { "hqmp": "high quality mate pair"},
+                    { "nxmate": "Lucigen NxMate"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "pairing format, library 2",
+                "description": "Pairing type (if the reads are paired)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "read_type3",
+            "value": {
+                "default": "paired",
+                "type": "enumeration",
+                "enum_values": [
+                    { "single": "single reads"},
+                    { "paired": "paired reads"},
+                    { "paired-plus": "paired and single reads"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "Library3 read content",
+                "description": "Paired, single, or both?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+         {
+            "id": "format3",
+            "value": {
+            	"default": "pe",
+               	"type": "enumeration",
+                "enum_values": [
+                    { "pe": "paired end"},
+                    { "mp": "mate pair"},
+                    { "hqmp": "high quality mate pair"},
+                    { "nxmate": "Lucigen NxMate"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 6
+            },
+            "details": {
+                "label": "pairing format, library 3",
+                "description": "Pairing type (if the reads are paired)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "read_type4",
+            "value": {
+                "default": "paired",
+                "type": "enumeration",
+                "enum_values": [
+                    { "single": "single reads"},
+                    { "paired": "paired reads"},
+                    { "paired-plus": "paired and single reads"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 7
+            },
+            "details": {
+                "label": "Library4 read content",
+                "description": "Paired, single, or both?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format4",
+            "value": {
+            	"default": "pe",
+               	"type": "enumeration",
+                "enum_values": [
+                    { "pe": "paired end"},
+                    { "mp": "mate pair"},
+                    { "hqmp": "high quality mate pair"},
+                    { "nxmate": "Lucigen NxMate"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 8
+            },
+            "details": {
+                "label": "pairing format, library 4",
+                "description": "Pairing type (if the reads are paired)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "read_type5",
+            "value": {
+                "default": "paired",
+                "type": "enumeration",
+                "enum_values": [
+                    { "single": "single reads"},
+                    { "paired": "paired reads"},
+                    { "paired-plus": "paired and single reads"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 9
+            },
+            "details": {
+                "label": "Library5 read content",
+                "description": "Paired, single, or both?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format5",
+            "value": {
+            	"default": "pe",
+               	"type": "enumeration",
+                "enum_values": [
+                    { "pe": "paired end"},
+                    { "mp": "mate pair"},
+                    { "hqmp": "high quality mate pair"},
+                    { "nxmate": "Lucigen NxMate"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 10
+            },
+            "details": {
+                "label": "pairing format, library 5",
+                "description": "Pairing type (if the reads are paired)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                {
+            "id": "kmer",
+            "value": {
+                "default": "35",
+                "type": "string",
+                "required": true,
+                "visible": true,
+                "order": 11
+            },
+            "details": {
+                "label": "Kmer setting(s)",
+                "description": "Enter one or more kmer values (comma-separated)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "meta",
+            "value": {
+                "default": "",
+                "type": "enumeration",
+                "enum_values": [
+                    { "": "single genome"},
+                    { "yes": "metagenomic assembly"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 12
+            },
+            "details": {
+                "label": "metagenomics option",
+                "description": "Choose single genome or multi-genome/metagenomic assembly",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "phred",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 13
+            },
+            "details": {
+                "label": "phred value",
+                "description": "phred offset value for the reads, 33 or 64",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "single_cell",
+            "value": {
+                "default": "",
+                "type": "enumeration",
+                "enum_values": [
+                    { "": "normal"},
+                    { "yes": "MDA single-cell"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 14
+            },
+            "details": {
+                "label": "single-cell option",
+                "description": "select for MDA-produced, single-cell data",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "iontorrent",
+            "value": {
+                "default": "",
+                "type": "enumeration",
+                "enum_values": [
+                    { "": "default-Illumina"},
+                    { "yes": "ion torrent data"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 15
+            },
+            "details": {
+                "label": "ion torrent data",
+                "description": "select for ion torrent data",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "cov_cutoff",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 16
+            },
+            "details": {
+                "label": "coverage cutoff",
+                "description": "Default=off, or choose auto or a floating point value",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "Spades_Output",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "Spades_Output",
+                "required": true,
+                "type": "string",
+                "visible": false,
+                "order": 1
+            }
+        }
+    ]
+}
