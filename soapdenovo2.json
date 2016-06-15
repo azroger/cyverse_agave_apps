@@ -1,0 +1,1066 @@
+{
+    "name": "rb-Soapdenovo",
+    "parallelism": "SERIAL",
+    "version": "2.0.4",
+    "helpURI": "https://pods.iplantcollaborative.org/wiki/display/DEapps/soapdenovo",
+    "label": "Soapdenovo",
+    "shortDescription": "Soapdenovo2, genome assembler",
+    "longDescription": "Genome assembler for Illumina sequencing reads",
+    "author": "Roger Barthelson",
+    "datePublished": "05/01/15",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+        "BGI"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "executionHost": "rogerab-stampedesville",
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/soapdenovo-2.04/bin",
+    "templatePath": "Soapdenovo_wrapper2A.sh",
+    "testPath": "../test/Soapdenovotest.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC",
+        "swap mvapich2/2.1 mvapich2",
+        "load irods",
+        "load soapdenovo2/r240"
+    ],
+    "inputs": [
+        {
+            "id": "reads1_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 1
+            },
+            "details": {
+                "label": "Library1, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads1_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 2
+            },
+            "details": {
+                "label": "Library1, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads2_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 3
+            },
+            "details": {
+                "label": "Library2, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads2_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 4
+            },
+            "details": {
+                "label": "Library2, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads3_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 5
+            },
+            "details": {
+                "label": "Library3, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads3_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 6
+            },
+            "details": {
+                "label": "Library3, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads4_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 7
+            },
+            "details": {
+                "label": "Library4, Paired Reads, reads1",
+                "description": "Enter the forward reads or first read file of a pair here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads4_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 8
+            },
+            "details": {
+                "label": "Library4, Paired Reads, reads2",
+                "description": "Enter the reverse reads or second read file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads5_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 9
+            },
+            "details": {
+                "label": "Library5--Unpaired Reads, or paired reads, reads1",
+                "description": "Enter ALL Unpaired reads here"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+        {
+            "id": "reads5_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 10
+            },
+            "details": {
+                "label": "Enter reads2 FOR A PAIRED LIBRARY ONLY",
+                "description": "This is for use ONLY when the library has paired reads"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "max_rd_len",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "order": 1
+            },
+            "details": {
+                "label": "maximum read length",
+                "description": "Longest reads used for assembly",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "avg_ins1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "average insert size, library 1",
+                "description": "Pair spacing (required if there is a library 1)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "asm_flags1",
+            "value": {
+                "default": "3",
+                "type": "enumeration",
+                "enum_values": [
+                    { "1": "assembly"},
+                    { "2": "scaffolding"},
+                    { "3": "assembly and scaffolding"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "assembly steps, library 1",
+                "description": "1 for contig assmbly, 2 for scaffolding, 3 for both",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "rank1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "order for scaffolding, library 1",
+                "description": "set order for use in scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format1",
+            "value": {
+                "default": "q",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "sequence file format, library 1",
+                "description": "q for fastq, a for fasta",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+         {
+            "id": "reverse_seq1",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "enum_values": [
+                    { "0": "Forward,Reverse"},
+                    { "1": "Reverse,Forward"}
+                ],
+                "required": true,
+                "visible": true,
+                "order": 6
+            },
+            "details": {
+                "label": "read orientations, library 1",
+                "description": "Pairs are oriented Forward-Reverse, or Reverse-Forward?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "avg_ins2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 7
+            },
+            "details": {
+                "label": "average insert size, library 2",
+                "description": "Pair spacing (required if there is a library 2)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "asm_flags2",
+            "value": {
+                "default": "3",
+                "type": "enumeration",
+                "enum_values": [
+                    { "1": "assembly"},
+                    { "2": "scaffolding"},
+                    { "3": "assembly and scaffolding"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 8
+            },
+            "details": {
+                "label": "assembly steps, library 2",
+                "description": "1 for contig assmbly,2 for scaffolding, 3 for both",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "rank2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 9
+            },
+            "details": {
+                "label": "order for scaffolding, library 2",
+                "description": "set order for use in scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format2",
+            "value": {
+                "default": "q",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 10
+            },
+            "details": {
+                "label": "sequence file format, library 2",
+                "description": "q for fastq, a for fasta",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                {
+            "id": "reverse_seq2",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "enum_values": [
+                    { "0": "Forward,Reverse"},
+                    { "1": "Reverse,Forward"}
+                ],
+                "required": true,
+                "visible": true,
+                "order": 11
+            },
+            "details": {
+                "label": "read orientations, library 2",
+                "description": "Pairs are oriented Forward-Reverse, or Reverse-Forward?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "avg_ins3",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 12
+            },
+            "details": {
+                "label": "average insert size, library 3",
+                "description": "Pair spacing (required if there is a library 3)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "asm_flags3",
+            "value": {
+                "default": "3",
+                "type": "enumeration",
+                "enum_values": [
+                    { "1": "assembly"},
+                    { "2": "scaffolding"},
+                    { "3": "assembly and scaffolding"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 13
+            },
+            "details": {
+                "label": "assembly steps, library 3",
+                "description": "1 for contig assmbly,2 for scaffolding, 3 for both",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "rank3",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 14
+            },
+            "details": {
+                "label": "order for scaffolding, library 3",
+                "description": "set order for use in scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format3",
+            "value": {
+                "default": "q",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 15
+            },
+            "details": {
+                "label": "sequence file format, library 3",
+                "description": "q for fastq, a for fasta",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "reverse_seq3",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "enum_values": [
+                    { "0": "Forward,Reverse"},
+                    { "1": "Reverse,Forward"}
+                ],
+                "required": true,
+                "visible": true,
+                "order": 16
+            },
+            "details": {
+                "label": "read orientations, library 3",
+                "description": "Pairs are oriented Forward-Reverse, or Reverse-Forward?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "avg_ins4",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 17
+            },
+            "details": {
+                "label": "average insert size, library 4",
+                "description": "Pair spacing (required if there is a library 4)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "asm_flags4",
+            "value": {
+                "default": "3",
+                "type": "enumeration",
+                "enum_values": [
+                    { "1": "assembly"},
+                    { "2": "scaffolding"},
+                    { "3": "assembly and scaffolding"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 18
+            },
+            "details": {
+                "label": "assembly steps, library 4",
+                "description": "1 for contig assmbly,2 for scaffolding, 3 for both",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "rank4",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 19
+            },
+            "details": {
+                "label": "order for scaffolding, library 4",
+                "description": "set order for use in scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format4",
+            "value": {
+                "default": "q",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 20
+            },
+            "details": {
+                "label": "sequence file format, library 4",
+                "description": "q for fastq, a for fasta",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                {
+            "id": "reverse_seq4",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "enum_values": [
+                    { "0": "Forward,Reverse"},
+                    { "1": "Reverse,Forward"}
+                ],
+                "required": true,
+                "visible": true,
+                "order": 21
+            },
+            "details": {
+                "label": "read orientations, library 4",
+                "description": "Pairs are oriented Forward-Reverse, or Reverse-Forward?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "avg_ins5",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 22
+            },
+            "details": {
+                "label": "average insert size, library 5",
+                "description": "Pair spacing (required if there is a library 5)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "asm_flags5",
+            "value": {
+                "default": "3",
+                "type": "enumeration",
+                "enum_values": [
+                    { "1": "assembly"},
+                    { "2": "scaffolding"},
+                    { "3": "assembly and scaffolding"}
+                ],
+                "required": false,
+                "visible": true,
+                "order": 23
+            },
+            "details": {
+                "label": "assembly steps, library 5",
+                "description": "1 for contig assmbly,2 for scaffolding, 3 for both",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "rank5",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 24
+            },
+            "details": {
+                "label": "order for scaffolding, library 5",
+                "description": "set order for use in scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "format5",
+            "value": {
+                "default": "q",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 25
+            },
+            "details": {
+                "label": "sequence file format, library 5",
+                "description": "q for fastq, a for fasta",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "reverse_seq5",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "enum_values": [
+                    { "0": "Forward,Reverse"},
+                    { "1": "Reverse,Forward"}
+                ],
+                "required": true,
+                "visible": true,
+                "order": 26
+            },
+            "details": {
+                "label": "read orientations, library 5",
+                "description": "Pairs are oriented Forward-Reverse, or Reverse-Forward?",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "kmer",
+            "value": {
+                "default": "27",
+                "type": "string",
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "order": 27
+            },
+            "details": {
+                "label": "kmer size",
+                "description": "kmer size",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "mergeLevel",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 28
+            },
+            "details": {
+                "label": "merge level",
+                "description": "contig merging strength, 0-3",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "dkmers",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 29
+            },
+            "details": {
+                "label": "kmer selection",
+                "description": "delete kmers with frequency n or less",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "kRange",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 30
+            },
+            "details": {
+                "label": "kmer size range",
+                "description": "63 or 127 (up to 63mers or up to 127mers)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "dEdges",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 31
+            },
+            "details": {
+                "label": "edge selection",
+                "description": "delete edges with coverage of n or less",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "repeats",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 32
+            },
+            "details": {
+                "label": "repeats",
+                "description": "solve repeats by reads",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "gapLenDiff",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 33
+            },
+            "details": {
+                "label": "gap length difference",
+                "description": "allowed difference between estimated and filled gap size",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "minLen",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 34
+            },
+            "details": {
+                "label": "minimum contig length",
+                "description": "minimum contig length for scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "unmask",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 34
+            },
+            "details": {
+                "label": "unmask",
+                "description": "unmask high coverage contigs before scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "Soapdenovo_Output",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "Soapdenovo_Output",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
