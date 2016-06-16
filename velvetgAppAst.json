@@ -1,0 +1,489 @@
+{
+    "name": "rb-velvetg-stampede",
+    "parallelism": "PARALLEL",
+    "version": "1.2.08",
+    "revision": 2,
+    "helpURI": "http://www.ebi.ac.uk/~zerbino/velvet/",
+    "label": "Velvetg",
+    "shortDescription": "Velvetg, second step of genome assembly",
+    "longDescription": "Genome assembler for short sequencing reads, second stage.",
+    "author": "Roger Barthelson",
+    "datePublished": "08/21/15",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+        "454",
+        "EBI"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "executionHost": "rogerab-stampedesville",
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/velvetg-stmp-1.2.08/bin",
+    "templatePath": "velvetg_wrapperAst.sh",
+    "testPath": "../test/velvetg_wrapper_testA.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load irods",
+        "load velvet/1.2.08"
+    ],
+    "inputs": [
+        {
+            "id": "velvet_dir",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "Output directory from Velveth (VelvetOut.tar.gz)",
+                "description": "tar archive of velveth output directory"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "text"
+                ]
+            }
+        }
+	],
+    "parameters": [
+            {
+            "id": "read_trkg",
+            "value": {
+                "default": "no",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 1
+            },
+            "details": {
+                "label": "Read tracking option, yes or no. Default=no",
+                "description": "Enter yes to turn on read tracking",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "min_contig_lgth",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "minimum contig size",
+                "description": "Enter a number, to set specific minimum contig size",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ctff",
+            "value": {
+                "default": "auto",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "Coverage cutoff value-floating-point or auto",
+                "description": "Enter a value to set the coverage cutoff manually",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "exp_cov",
+            "value": {
+                "default": "auto",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "Exp. cov. (floating point or auto. Calc. from the coverage)",
+                "description": "Set a specific expected coverage value",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "long_cov_cutoff",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "Remove nodes with low long-read coverage AFTER tour bus",
+                "description": "Enter a floating point to set the long coverage cutoff",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 6
+            },
+            "details": {
+                "label": "Insert size for short paired reads (integer)",
+                "description": "insert size or paired-end spacing (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length_sd",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 7
+            },
+            "details": {
+                "label": "SD for insert size for short paired reads (integer)",
+                "description": "Estimated std deviation in the insert size (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 8
+            },
+            "details": {
+                "label": "Insert size for short paired reads 2 (integer)",
+                "description": "insert size or paired-end spacing (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length2_sd",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 9
+            },
+            "details": {
+                "label": "SD for insert size for short paired reads 2",
+                "description": "Estimated std deviation in the insert size (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+                    {
+            "id": "ins_length_long",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 10
+            },
+            "details": {
+                "label": "Insert size for long paired reads",
+                "description": "Insert size for long paired reads (integer)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "ins_length_long_sd",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 11
+            },
+            "details": {
+                "label": "SD for insert size for long paired reads",
+                "description": "Estimated std deviation in the insert size",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },  
+                    {
+            "id": "scaffolding",
+            "value": {
+                "default": "yes",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 12
+            },
+            "details": {
+                "label": "Scaffolding, yes or no.",
+                "description": "Enter no to turn off scaffolding",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "max_branch_length",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 13
+            },
+            "details": {
+                "label": "Max length in base pairs of bubble (default: 100)",
+                "description": "Enter a new branch length (bp).",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "long_mult_cutoff",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 14
+            },
+            "details": {
+                "label": "Min number of long reads required to merge contigs (default: 2)",
+                "description": "Enter a new cutoff value (integer)",
+                
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "unused_reads",
+            "value": {
+                "default": "no",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 15
+            },
+            "details": {
+                "label": "Export unused reads, yes or no (default: no)",
+                "description": "Enter yes to export unused to a file",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+                    {
+            "id": "alignments",
+            "value": {
+                "default": "no",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 16
+            },
+            "details": {
+                "label": "Export a summary of contig alignments (default: no)",
+                "description": "Enter yes to export summary of contig alignments to a reference",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "exportFiltered",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 17
+            },
+            "details": {
+                "label": "export the long nodes which were eliminated (default: no)",
+                "description": "Enter yes to export the eliminated nodes to a file",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "paired_exp_fraction",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 18
+            },
+            "details": {
+                "label": "Remove paired connections with a low fraction of the counts",
+                "description": "Enter a new fraction of counts (default: 0.1)",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "conserveLong",
+            "value": {
+                "default": "no",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 19
+            },
+            "details": {
+                "label": "preserve sequences with long reads in them (default no)",
+                "description": "Enter yes to preserve the sequences assembled from long reads",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }     
+    ],
+    "outputs": [
+        {
+            "id": "VelvetgOutput",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "VelvetG_Out.tar.gz",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
