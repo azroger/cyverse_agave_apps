@@ -1,0 +1,345 @@
+{
+    "name": "rb-HTProcess-Tophat",
+    "parallelism": "SERIAL",
+    "version": "2.0.13",
+    "helpURI": "http://ccb.jhu.edu/software/tophat/index.shtml",
+    "label": "HTProcess_Tophat_48hr",
+    "shortDescription": "spliced transcript mapper",
+    "longDescription": "Tophat2 for HTProcess pipeline",
+    "author": "Roger Barthelson",
+    "datePublished": "03/31/16",
+    "tags": [
+        "mapper",
+        "NGS",
+        "Illumina",
+        "RNA-Seq",
+        "aligner"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "normal",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 32,
+    "defaultProcessorsPerNode": 16,
+    "deploymentPath": "rogerab/applications/tophat-2.0.13/bin",
+    "templatePath": "HTprocess_tophatA.sh",
+    "testPath": "../test/httophat.sh",
+    "checkpointable": false,
+    "modules": [
+	"load irods",
+        "load samtools"
+    ],
+    "inputs": [
+        {
+            "id": "inputDirectory",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": true,
+                "order": 0
+            },
+            "details": {
+                "label": "Input the HTProcess_Reads_T1 directory.",
+                "description": "Directory of sequence files"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+       {
+            "id": "reference",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": true,
+                "order": 1
+            },
+            "details": {
+                "label": "Input the genome sequence file",
+                "description": "reference genome sequence file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+       {
+            "id": "annotation",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 2
+            },
+            "details": {
+                "label": "Input the annotation GTF file",
+                "description": "GTF annotation file"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+    	{
+      "id": "speed",
+      "details": {
+        "label": "Select the speed vs sensitivity of the run",
+        "showAttribute": false
+      },
+      "semantics": {
+        "ontology": [
+          "xs:string"
+        ]
+      },
+      "value": {
+        "type": "enumeration",
+                "default": "XXb2Xsensitive",
+                "enum_values": [
+                	{ "XXb2XveryXfast": "very fast" },
+                    { "XXb2Xfast": "fast" },
+                    { "XXb2Xsensitive": "sensitive" },
+                    { "XXb2XveryXsensitive": "very sensitive" }
+                ],
+        "visible": true,
+        "required": false,
+        "order": 1
+      }
+    	},
+            {
+            "id": "anchor",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "Enter the minimum anchor value",
+                "description": "minimum alignment for initial match",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                {
+            "id": "mismatch",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string",
+                "order": 3
+            },
+            "details": {
+                "label": "Enter the number of allowed mismatches",
+                "description": "max allowed read mismatches",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },        
+        	{
+            "id": "edit_dist",
+            "value": {
+                "default": "2",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "Enter the edit distance value",
+                "description": "read edit distance",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        	{
+            "id": "max_intron",
+            "value": {
+                "default": "500000",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "Enter the max intron size",
+                "description": "maximum intron length",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        	{
+            "id": "min_intron",
+            "value": {
+                "default": "50",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 6
+            },
+            "details": {
+                "label": "Enter the min intron size",
+                "description": "minimum intron length",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        	{
+            "id": "max_hits",
+            "value": {
+                "default": "20",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 7
+            },
+            "details": {
+                "label": "Enter the max hits per read",
+                "description": "maximum no. of hits per read",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "segment",
+            "value": {
+                "default": "25",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 8
+            },
+            "details": {
+                "label": "Enter a value for the segment length",
+                "description": "segment length",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+            {
+            "id": "option1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 9
+            },
+            "details": {
+                "label": "Enter your favorite tophat2 option",
+                "description": "an open option window",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        	{
+            "id": "option2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 10
+            },
+            "details": {
+                "label": "Enter another favorite tophat2 option",
+                "description": "another open option window",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+        "outputs": [
+        {
+            "id": "HTProcess_BAM",
+            "details": {
+                "label": "Output Directory",
+                "description": "The name of the output directory"
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "HTProcess_BAM_",
+                "required": false,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
