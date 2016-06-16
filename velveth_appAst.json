@@ -1,0 +1,372 @@
+{
+    "name": "velveth-stampede",
+    "parallelism": "PARALLEL",
+    "version": "1.2.08",
+    "revison": "3",
+    "helpURI": "http://www.ebi.ac.uk/~zerbino/velvet/",
+    "label": "VelvetH 1.2.08",
+    "shortDescription": "Velveth, first step of genome assembly",
+    "longDescription": "Genome assembler for short sequencing reads, first stage.",
+    "author": "Roger Barthelson",
+    "datePublished": "01/27/15",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+         "454",
+        "EBI"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+    "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "executionHost": "rogerab-stampedesville",
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/velveth-stmp-1.2.08/bin",
+    "templatePath": "velveth_wrapperAst.sh",
+    "testPath": "../test/velveth_wrapper_testA.sh",
+    "checkpointable": true,
+    "modules": [
+        "purge",
+        "load TACC",
+        "load iRODS",
+        "load velvet/1.2.08"
+    ],
+    "inputs": [
+        {
+            "id": "reads1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 1
+            },
+            "details": {
+                "label": "Short Paired Seqs 1",
+                "description": "Interleaved sequence file in fastq, fasta, or sam format, etc."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 2
+            },
+            "details": {
+                "label": "Short Paired Seqs 2",
+                "description": "Sequence file in fastq, fasta, or sam format, etc."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads3",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 3
+            },
+            "details": {
+                "label": "Long Paired Seqs",
+                "description": "Paired, interleaved sequence file in fastq, fasta, or sam format, etc."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads4",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 4
+            },
+            "details": {
+                "label": "Short Unpaired Seqs",
+                "description": "Sequence file in fastq, fasta, or sam format, etc."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads5",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 5
+            },
+            "details": {
+                "label": "Long Unpaired Seqs",
+                "description": "Sequence file in fastq, fasta, sam format, etc."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads6",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 5
+            },
+            "details": {
+                "label": "Reference Seqs",
+                "description": "Reference sequence file in fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+                    {
+            "id": "kmer",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "order": 1
+            },
+            "details": {
+                "label": "kmer setting",
+                "description": "kmer value for assembly",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "no_known_function",
+            "value": {
+                "default": "0",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string"
+            },
+            "details": {
+                "label": "A Dud",
+                "description": "Specify absolutely nothing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+         },        
+         {
+            "id": "strandSpecific",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "strand specific",
+                "description": "For strand-specific transcriptome data. Enter YES",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format1",
+            "value": {
+                "default": "-fastq",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "file format, Short Paired Seqs 1",
+                "description": "-fasta -fastq -raw -fasta.gz -fastq.gz -raw.gz -sam -bam or-fmtAuto",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format2",
+            "value": {
+                "default": "-fastq",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "file format, Short Paired Seqs 2",
+                "description": "-fasta -fastq -raw -fasta.gz -fastq.gz -raw.gz -sam -bam or-fmtAuto",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format3",
+            "value": {
+                "default": "-fastq",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "file format, Long Paired Seqs",
+                "description": "-fasta -fastq -raw -fasta.gz -fastq.gz -raw.gz -sam -bam or-fmtAuto",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format4",
+            "value": {
+                "default": "-fastq",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 6
+            },
+            "details": {
+                "label": "file format, Short Unpaired Seqs",
+                "description": "-fasta -fastq -raw -fasta.gz -fastq.gz -raw.gz -sam -bam or-fmtAuto",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format5",
+            "value": {
+                "default": "-fastq",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 7
+            },
+            "details": {
+                "label": "file format, Long Unpaired Seqs",
+                "description": "-fasta -fastq -raw -fasta.gz -fastq.gz -raw.gz -sam -bam or-fmtAuto",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "VelvethOutput",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "VelvetOut.tar.gz",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
