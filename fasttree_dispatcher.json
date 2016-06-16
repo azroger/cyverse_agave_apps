@@ -1,0 +1,134 @@
+{
+    "name"		: "rb-FasttreeDispatcher",
+    "parallelism"	: "SERIAL",
+    "version"		: "2.1.4",
+    "helpURI"		: "http://www.microbesonline.org/fasttree",
+    "label"		: "FastTree Dispatcher",
+    "shortDescription"	: "FastTree infers approximately-maximum-likelihood phylogenetic trees from alignments of nucleotide or protein sequences.",
+    "longDescription"	: "FastTree Dispatcher allows the dynamic invocation of supported versions or revisions",
+    "author"		: "Roger Barthelson",
+    "datePublished"	: "",
+    "tags"		: [ "ML", "maximum likelihood", "phylogenetics" ],
+    "ontology"		: [
+        	"http://sswapmeet.sswap.info/agave/apps/Application" ],
+    "checkpointable"	: false,
+    "defaultQueue": "normal",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 32,
+    "defaultProcessorsPerNode": 16,
+    "defaultRequestedTime": "24:00:00",
+    "defaultMaxRunTime": "23:57:00",
+    "deploymentPath"	: "/rogerab/applications/fasttree-2.1.4/bin/",
+    "executionSystem"	: "rogerab-stampedesville",
+    "executionType"	: "HPC",
+    "templatePath"	: "wrapper.sh",
+    "testPath"		: "../test/test.sh",
+    "modules"		: [ "purge", "load TACC", "load irods" ],
+
+    "parameters" : [
+{
+"id": "model",
+"value": {
+"type": "enumeration",
+"default": "-gtr -nt",
+"enum_values": [
+{ "-gtr -nt": "GTRCAT, nucleotide" },
+{ "-wag": "WAGCAT, peptide" },
+{ "": "JTTCAT, peptide" },
+{ "-nt" : "JCCAT, nucleotide" }
+],
+"visible": true,
+"required": false
+},
+"details": {
+"label": "FastTree model",
+"description": "FastTree model",
+"showAttribute": true
+},
+"semantics": {
+"ontology": [
+"xs:string"
+]
+}
+},
+        {
+            "id" : "arguments",
+
+            "value" : {
+                "default"   : "",
+                "validator" : "",
+                "required"  : false,
+                "visible"   : true,
+                "type"      : "string"
+            },
+            
+            "details" : {
+                "label"       : "arguments",
+                "description" : "Command line settings and arguments; see http://www.microbesonline.org/fasttree",
+                "visible"     : true
+            },
+            
+            "semantics" : {
+                "ontology" : [ "http://sswapmeet.sswap.info/iplant/apps/arguments" ]
+            }
+        }
+ 
+    ],
+
+    "inputs" : [
+        {
+            "id" : "inFasta",
+
+            "value" : {
+                "default"	: "",
+                "validator"	: "",
+                "required"	: true,
+                "visible"	: true,
+                "type"		: "string"
+            },
+
+            "details" : {
+                "label"		: "Alignment file (relative to /iplant/home/)",
+                "description"	: "Protein alignment (or nucleotide alignmnent with -nt option). FastTree fasta or phylip interleaved formats.",
+                "visible"	: true
+            },
+            
+            "semantics" : {
+                "ontology"	: [ "http://sswapmeet.sswap.info/iplant/fasttree/requests/FastTreeRequest" ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes"	: [ "FASTA-0" , "Phylip-0" ]
+            }
+        }
+    ],
+    
+    "outputs": [
+        {
+            "id" : "outTree",
+
+            "value" : {
+                "default"	: "fasttree.nwk",
+                "validator"	: "",
+                "required"	: false,
+                "visible"	: true,
+                "type"		: "string"
+            },
+
+            "details" : {
+                "label"		: "Output tree file",
+                "description"	: "Inferred tree in Newick format",
+                "visible"	: true
+            },
+
+            "semantics" : {
+                "ontology"	: [
+			"http://sswapmeet.sswap.info/mime/text/X-newick",
+			"http://sswapmeet.sswap.info/agave/io/IPlantData"
+		],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileType"	: [ "Newick-0" ]
+            }
+        }
+    ]
+}
