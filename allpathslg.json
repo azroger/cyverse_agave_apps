@@ -1,0 +1,1096 @@
+
+{
+    "name": "AllpathsLG_stampede",
+    "parallelism": "SERIAL",
+    "version": "48777",
+    "revision": 2,
+    "helpURI": "https://pods.iplantcollaborative.org/wiki/display/DEapps/AllpathsLG",
+    "label": "AllpathsLG",
+    "shortDescription": "AllpathsLG, genome assembler",
+    "longDescription": "Genome assembler",
+    "author": "Roger Barthelson",
+    "datePublished": "1/27/15",
+    "tags": [
+        "assembler",
+        "NGS",
+        "Illumina",
+        "BGI"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/sequenceServices/SequenceServices"
+    ],
+     "defaultRequestedTime": "48:00:00",
+     "defaultMaxRunTime": "47:56:00",
+    "defaultQueue": "largemem",
+    "defaultNodeCount": 1,
+    "defaultMemoryPerNode": 999,
+    "defaultProcessorsPerNode": 32,
+    "executionSystem": "rogerab-stampedesville",
+    "executionType": "HPC",
+    "deploymentPath": "rogerab/applications/allpathslg48777/bin",
+    "templatePath": "allpaths_wrapperA.sh",
+    "testPath": "../test/allpaths_testwrapper.sh",
+    "archiving": false,
+    "checkpointable": true,          
+    "modules": [
+        "load TACC",
+        "load picard",
+        "load allpathslg"
+    ],
+    "inputs": [
+        {
+            "id": "reads1_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 1
+            },
+            "details": {
+                "label": "reads1_1",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads1_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 2
+            },
+            "details": {
+                "label": "reads1_2",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads2_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 3
+            },
+            "details": {
+                "label": "reads2_1",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads2_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 4
+            },
+            "details": {
+                "label": "reads2_2",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads3_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 5
+            },
+            "details": {
+                "label": "reads3_1",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads3_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 6
+            },
+            "details": {
+                "label": "reads3_2",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads4_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 7
+            },
+            "details": {
+                "label": "reads4_1",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads4_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 8
+            },
+            "details": {
+                "label": "reads4_2",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        },
+              {
+            "id": "reads5_1",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 9
+            },
+            "details": {
+                "label": "reads5_1",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+            },
+              {
+            "id": "reads5_2",
+            "value": {
+                "default": "",
+                "validator": "",
+                "visible": true,
+                "required": false,
+                "order": 10
+            },
+            "details": {
+                "label": "reads5_2",
+                "description": "Sequence file in fastq or fasta format"
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/sequence/FASTA"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+            }
+    ],
+    "parameters": [
+            {
+            "id": "libName1",
+            "value": {
+                "default": "library1",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 1
+            },
+            "details": {
+                "label": "library1 name",
+                "description": "name is required for every library entered",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "avg_ins1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 2
+            },
+            "details": {
+                "label": "average insert size, library 1",
+                "description": "paired-end spacing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "delta1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 3
+            },
+            "details": {
+                "label": "delta for avg_ins1, library 1",
+                "description": "typically about 20 per cent",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readStart1",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 4
+            },
+            "details": {
+                "label": "start read at base, library 1",
+                "description": "set distance from start to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readEnd1",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 5
+            },
+            "details": {
+                "label": "end read at base, library 1",
+                "description": "set distance from end to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 6
+            },
+            "details": {
+                "label": "sequence format, library 1",
+                "description": "fragment or jumping",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                            {
+            "id": "avg_ins2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 8
+            },
+            "details": {
+                "label": "average insert size, library 2",
+                "description": "paired end spacing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "libName2",
+            "value": {
+                "default": "library2",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 7
+            },
+            "details": {
+                "label": "library name, library 2",
+                "description": "name is required for every library entered",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "delta2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 9
+            },
+            "details": {
+                "label": "delta for avg_ins2, library 2",
+                "description": "typically about 20 per cent",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 10
+            },
+            "details": {
+                "label": "sequence format, library 2",
+                "description": "fragment or jumping",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readStart2",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 11
+            },
+            "details": {
+                "label": "start read at base, library 2",
+                "description": "set distance from start to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readEnd2",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 12
+            },
+            "details": {
+                "label": "end read at base, library 2",
+                "description": "set distance from end to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },          
+                            {
+            "id": "avg_ins3",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 14
+            },
+            "details": {
+                "label": "average insert size, library 3",
+                "description": "paired-end spacing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "libName3",
+            "value": {
+                "default": "library3",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 13
+            },
+            "details": {
+                "label": "library 3 name",
+                "description": "name is required for every library entered",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "delta3",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 15
+            },
+            "details": {
+                "label": "delta for avg_in3",
+                "description": "typically about 20 per cent",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format3",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 16
+            },
+            "details": {
+                "label": "sequence file format, library 3",
+                "description": "fragment or jumping",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readStart3",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 17
+            },
+            "details": {
+                "label": "start read at base, library 3",
+                "description": "set distance from start to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readEnd3",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 18
+            },
+            "details": {
+                "label": "end read at base, library 3",
+                "description": "set distance from end to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },                     
+                            {
+            "id": "avg_ins4",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 20
+            },
+            "details": {
+                "label": "average insert size, library 4",
+                "description": "paired-end spacing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "reverse_seq4",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 23
+            },
+            "details": {
+                "label": "read orientations, library 4",
+                "description": "0 or 1",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "libName4",
+            "value": {
+                "default": "library4",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 19
+            },
+            "details": {
+                "label": "library 4 name",
+                "description": "name is required for every library entered",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "delta4",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 21
+            },
+            "details": {
+                "label": "delta for avg_ins4",
+                "description": "typically about 20 per cent",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readStart4",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 24
+            },
+            "details": {
+                "label": "start read at base, library 4",
+                "description": "set distance from start to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readEnd4",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 25
+            },
+            "details": {
+                "label": "end read at base, library 4",
+                "description": "set distance from end to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },                     
+                    {
+            "id": "format4",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 22
+            },
+            "details": {
+                "label": "sequence file format, library 4",
+                "description": "fragment or jumping",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "avg_ins5",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 27
+            },
+            "details": {
+                "label": "average insert size, library 5",
+                "description": "paired-end spacing",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "reverse_seq5",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 30
+            },
+            "details": {
+                "label": "read orientations, library 5",
+                "description": "0 or 1",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "libName5",
+            "value": {
+                "default": "library5",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 26
+            },
+            "details": {
+                "label": "library 5 name",
+                "description": "name is required for every library entered",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "delta5",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 28
+            },
+            "details": {
+                "label": "delta for avg_ins5",
+                "description": "typically about 20 per cent",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "format5",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 29
+            },
+            "details": {
+                "label": "sequence file format, library 5",
+                "description": "fragment or jumping",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readStart5",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 31
+            },
+            "details": {
+                "label": "start read at base, library 5",
+                "description": "set distance from start to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+                    {
+            "id": "readEnd5",
+            "value": {
+                "default": "0",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 32
+            },
+            "details": {
+                "label": "end read at base, library 5",
+                "description": "set distance from end to include",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },           
+         			{
+            "id": "PHRED64",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 33
+            },
+            "details": {
+                "label": "PHRED 64",
+                "description": "Enter yes for PHRED 64 quality scale",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+        			{
+            "id": "forcePhred",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 34
+            },
+            "details": {
+                "label": "forcePhred",
+                "description": "Enter yes to override Phred scale",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+         			{
+            "id": "ploidy",
+            "value": {
+                "default": "1",
+                "type": "string",
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "order": 35
+            },
+            "details": {
+                "label": "ploidy",
+                "description": "enter a ploidy value,1 or 2",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+        			{
+            "id": "Options1",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 36
+            },
+            "details": {
+                "label": "Options 1",
+                "description": "Additional Options 1",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }, 
+        			{
+            "id": "Options2",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 37
+            },
+            "details": {
+                "label": "Options 2",
+                "description": "Additional Options 2",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },               
+       				 {
+            "id": "Options3",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "order": 38
+            },
+            "details": {
+                "label": "Options 3",
+                "description": "Additional Options 3",
+                "visible": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "AllpathsLGOutput",
+            "details": {
+                "label": "Output File",
+                "description": "The name of the output file."
+            },
+            "semantics": {
+                "ontology": [],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "TEXT-0"
+                ]
+            },
+            "value": {
+                "default": "genome.scf.fasta",
+                "required": true,
+                "type": "string",
+                "visible": false
+            }
+        }
+    ]
+}
+
